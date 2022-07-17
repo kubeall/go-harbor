@@ -77,7 +77,7 @@ func (s *ProjectsService) CreateProject(p *models.ProjectReq) (success bool, res
 func (s *ProjectsService) ListProjects(option models.ProjectListOptions) (
 	projects []*models.Project, resp gorequest.Response, errs []error) {
 	resp, _, errs = s.client.
-		newRequest(gorequest.POST, "projects").
+		newRequest(gorequest.GET, "projects").
 		Query(option).
 		EndStruct(projects)
 	return
