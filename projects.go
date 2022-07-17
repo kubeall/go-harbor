@@ -52,7 +52,7 @@ func (s *ProjectsService) GetProjectLogs(projectName string) (
 	auditLogs []*models.AuditLog, resp gorequest.Response, errs []error) {
 	resp, _, errs = s.client.
 		newRequest(gorequest.GET, fmt.Sprintf("/projects/%s/logs", projectName)).
-		EndStruct(auditLogs)
+		EndStruct(&auditLogs)
 	return
 }
 func (s *ProjectsService) CheckProjectExist(name string) (exist bool, resp gorequest.Response, errs []error) {
@@ -79,7 +79,7 @@ func (s *ProjectsService) ListProjects(option models.ProjectListOptions) (
 	resp, _, errs = s.client.
 		newRequest(gorequest.GET, "projects").
 		Query(option).
-		EndStruct(projects)
+		EndStruct(&projects)
 	return
 }
 func (s *ProjectsService) UpdateProject(p *models.ProjectReq) (success bool, resp gorequest.Response, errs []error) {
@@ -112,7 +112,7 @@ func (s *ProjectsService) GetProjectScannerCandidates(projectNameOrId string) (
 	results []*models.Registration, resp gorequest.Response, errs []error) {
 	resp, _, errs = s.client.
 		newRequest(gorequest.GET, fmt.Sprintf("projects/%s/scanner/candidates", projectNameOrId)).
-		EndStruct(results)
+		EndStruct(&results)
 	return
 }
 func (s *ProjectsService) GetProjectProjectSummary(projectNameOrId string) (

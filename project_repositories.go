@@ -41,7 +41,7 @@ func (s *ProjectRepositoriesService) GetProjectRepository(projectName, repositor
 	repository models.Repository, resp gorequest.Response, errs []error) {
 	resp, _, errs = s.client.
 		newRequest(gorequest.GET, fmt.Sprintf("projects/%s/repositories/%s", projectName, repositoryName)).
-		EndStruct(&repository)
+		EndStruct(& repository)
 	return
 }
 func (s *ProjectRepositoriesService) DeleteProjectRepository(projectName, repositoryName string) (
@@ -58,7 +58,7 @@ func (s *ProjectRepositoriesService) ListProjectRepositories(projectName, reposi
 	repository models.Repository, resp gorequest.Response, errs []error) {
 	resp, _, errs = s.client.
 		newRequest(gorequest.POST, fmt.Sprintf("projects/%s/repositories/%s", projectName, repositoryName)).
-		EndStruct(&repository)
+		EndStruct(& repository)
 	return
 }
 
@@ -67,6 +67,6 @@ func (s *ProjectRepositoriesService) ListAllRepositories(option models.ProjectRe
 	resp, _, errs = s.client.
 		newRequest(gorequest.GET, "repositories").
 		Query(option).
-		EndStruct(results)
+		EndStruct(&results)
 	return
 }

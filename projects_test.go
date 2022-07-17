@@ -16,7 +16,10 @@ limitations under the License.
 
 package v1
 
-import "testing"
+import (
+	"github.com/kubeall/go-harbor/models"
+	"testing"
+)
 
 func TestCheckProject(t *testing.T) {
 	testInit()
@@ -53,4 +56,17 @@ func TestGetProjectByID(t *testing.T) {
 
 		}
 	}
+}
+func TestListProject(t *testing.T) {
+	testInit()
+	client, err := NewClientV2(TestHarborAddress, TestHarborUsername, TestHarborPwd)
+	if err != nil {
+		t.Error(err)
+	}
+	projects, _, errs := client.Projects.ListProjects(models.ProjectListOptions{})
+	if len(errs) > 0 {
+		t.Error(errs)
+	}
+	t.Logf("%T,length: %d", projects, len(projects))
+
 }
