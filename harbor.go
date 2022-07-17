@@ -80,8 +80,8 @@ func newClient(baseUrl, username, password string, options ...ClientOptionFunc) 
 			return nil, err
 		}
 	}
-	harborClient.SetBasicAuth(username, password)
 	client.client = harborClient
+	client.client.SetBasicAuth(username, password)
 	client.Projects = &ProjectsService{client: client}
 	client.Artifacts = &ArtifactsService{client: client}
 	client.Products = &ProductsService{client: client}
